@@ -62,6 +62,22 @@ After the last command, terminal 1 prints a `Notifying <name> at <URI> of the ne
 
 Note: use `http://localhost:5000`, not `https://` — the local Flask dev server does not serve HTTPS.
 
+## Running locally on a Mac
+
+On macOS, port 5000 is used by AirPlay Receiver, so the server can't use it. Set `PORT` to pick another port (the default is 5000, which is what the Codespace uses):
+
+```bash
+PORT=5055 python publisher.py
+```
+
+Then use `http://localhost:5055` in place of `http://localhost:5000` in the curl commands above, for example:
+
+```bash
+curl http://localhost:5055/list-subscribers
+```
+
+The unit tests don't use a port, so `python -m pytest -v` runs the same on a Mac as in the Codespace.
+
 ## Calling the Codespace from your own computer
 
 In the Codespace **Ports** tab, right-click port 5000 → **Port Visibility → Public**, then copy the forwarded address (e.g. `https://<name>-5000.app.github.dev`):

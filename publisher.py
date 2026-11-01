@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request, jsonify
 
 
@@ -76,4 +78,6 @@ def getSubject():
   return jsonify({'subject': subject})
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=5000, debug=True)
+  # Port 5000 is taken by AirPlay on macOS, so allow overriding it: PORT=5055 python publisher.py
+  port = int(os.environ.get('PORT', 5000))
+  app.run(host='0.0.0.0', port=port, debug=True)
